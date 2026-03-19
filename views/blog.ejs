@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+  <!-- Head section Start -->
+       <%- include('include/head') %>
+    <!-- Head section End -->
+
+<body>
+  <!-- Custom Cursor -->
+
+  <div class="cursor d-none d-lg-block"></div>
+
+    <!-- Header section Start -->
+    <%- include('include/header') %>
+    <!-- Header section End -->
+    <div id="smooth-content">
+      <!-- Hero section Start -->
+      <section class="quanto-hero-blog-section section-padding-bottom overflow-hidden">
+        <div class="container custom-container">
+          <div class="row g-4">
+            <div class="col-lg-12 col-xxl-11">
+              <div class="quanto-hero-blog__content move-anim" data-delay="0.45">
+                <h1 class="title"><%= webblog[0].hero_title %></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Hero section End -->
+
+      <!-- Blog section Start -->
+      <section class="quanto-blog-section section-padding-bottom overflow-hidden">
+        <div class="container custom-container">
+          <div class="row g-4 g-xl-6 quanto-blog3__row overflow-hidden">
+
+
+            <% blog.forEach((blogs) => { %>
+  <div class="col-xl-6">
+    <div class="quanto-blog-box style-2 border-bottom-style fade-anim" data-delay="0.45" data-direction="right">
+      <div class="quanto-blog-content">
+        <span class="quanto-blog-date"><%= blogs.display_date %></span>
+        <h5 class="line-clamp-3">
+          <a href="/blog/<%= blogs.blog_slug %>"><%= blogs.blog_name %></a>
+        </h5>
+        <a class='quanto-link-btn' href='/blog/<%= blogs.blog_slug %>'>
+          Read more
+          <span>
+            <i class="fa-solid fa-arrow-right arry1"></i>
+            <i class="fa-solid fa-arrow-right arry2"></i>
+          </span>
+        </a>
+      </div>
+      <div class="quanto-blog-thumb">
+        <a class='d-inline-block overflow-hidden' href='/blog/<%= blogs.blog_slug %>'>
+
+          <img src="<%= blogs.hero_image %>" alt="Article Image" class="w-100">
+
+        </a>
+      </div>
+    </div>
+  </div>
+<% }) %>
+
+
+
+     
+          </div>
+    <div class="row row-padding-top">
+  <div class="col-12">
+    <div class="blog-pagination">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end align-items-center custom-ul">
+          
+          <% if (currentPage > 1) { %>
+            <li class="page-item">
+              <a class="page-link prev" href="/blog?page=<%= currentPage - 1 %>">
+                <i class="fa-solid fa-arrow-left"></i> Prev
+              </a>
+            </li>
+          <% } %>
+
+          <% for (let i = 1; i <= totalPages; i++) { %>
+            <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+              <a class="page-link" href="/blog?page=<%= i %>"><%= i %></a>
+            </li>
+          <% } %>
+
+          <% if (currentPage < totalPages) { %>
+            <li class="page-item">
+              <a class="page-link next" href="/blog?page=<%= currentPage + 1 %>">
+                Next <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </li>
+          <% } %>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </section>
+      <!-- Blog section End -->
+
+      <!-- Footer section Start -->
+           <%- include('include/footer') %>
+      <!-- Footer section End -->
+    </div>
+  </div>
+  <!-- Jquery JS -->
+  <script src="/js/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <!-- MixItUp JS -->
+  <script src="/js/jquery.mixitup.min.js"></script>
+  <!-- Swiper Carousel JS -->
+  <script src="/js/swiper-bundle.min.js"></script>
+  <!-- Magnific Popup JS -->
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <!-- Odometer JS -->
+  <script src="/js/odometer.min.js"></script>
+  <script src="/js/viewport.jquery.js"></script>
+
+  <!-- gsap JS -->
+  <script src="/js/gsap.js"></script>
+  <script src="/js/gsap-scroll-smoother.js"></script>
+  <script src="/js/gsap-scroll-to-plugin.js"></script>
+  <script src="/js/gsap-scroll-trigger.js"></script>
+  <script src="/js/gsap-split-text.js"></script>
+
+  <!-- Menu JS -->
+  <script src="/js/menu.js"></script>
+
+  <!-- Main JS -->
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

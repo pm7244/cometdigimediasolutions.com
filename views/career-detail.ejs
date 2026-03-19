@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <%- include('include/head') %>
+</head>
+
+
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    /* font-family: system-ui, sans-serif; */
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    padding: 20px;
+  }
+
+  .open-btn {
+    padding: 12px 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .open-btn:hover {
+    background: #333;
+  }
+
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.2s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .modal-content {
+    background: #fff;
+    max-width: 500px;
+    width: 90%;
+    margin: 80px auto;
+    padding: 30px 25px;
+    border-radius: 12px;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .close-btn {
+    float: right;
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border 0.3s;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #000;
+  }
+
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  input[type="file"] {
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #000;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background: #333;
+  }
+
+/* //////////////////////form//////////////////////////// */
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 9999; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+#formMessage {
+  margin-top: 15px;
+
+}
+
+
+</style>
+
+<body>
+  <!-- Custom Cursor -->
+
+  <div class="cursor d-none d-lg-block"></div>
+
+      <!-- Header section Start -->
+      <%- include('include/header') %>
+
+      <!-- Header section End -->
+    <!-- Header section End -->
+    <div id="smooth-content">
+      <!-- Career section Start -->
+      <section class="quanto-career-details-section section-padding-bottom overflow-hidden">
+        <div class="container custom-container">
+          <div class="row g-4">
+            <div class="col-lg-8 gsap-scroll">
+              <div class="quanto-career-details__content">
+                <h2 class="career-details-title move-anim" data-delay="0.5">
+                 <%= career.title %>
+                </h2>
+                <p class="fade-anim" data-delay="0.8">
+                <%= career.des %>
+                </p>
+             
+
+                <div class="job-work common-block">
+                  <h5 class="title move-anim" data-delay="0.5">
+                   Job Requirement
+                  </h5>
+                <ul class="custom-ul">
+  <% JSON.parse(career.job_req).forEach(function(item) { %>
+    <li class="fade-anim" data-delay="0.8"><%= item %></li>
+  <% }) %>
+</ul>
+
+                </div>
+                <div class="job-need-skills common-block">
+                 <h5 class="title move-anim" data-delay="0.5">
+  Job Qualification
+</h5>
+<ul class="custom-ul">
+  <% JSON.parse(career.job_qualification).forEach(function(qual) { %>
+    <li class="fade-anim" data-delay="0.8"><%= qual %></li>
+  <% }) %>
+</ul>
+
+            
+                  </ul>
+                </div>
+           
+          
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="quanto-career-details__sidebar gsap-sticky">
+                <div class="job-info">
+                  <div class="info-box fade-anim" data-delay="0.2">
+                    <span class="title">Location</span>
+                    <span class="short-info"><%= career.location %></span>
+                  </div>
+                  <div class="info-box fade-anim" data-delay="0.4">
+                    <span class="title">Job Type</span>
+                    <span class="short-info"><%= career.job_type %></span>
+                  </div>
+                  <div class="info-box fade-anim" data-delay="0.6">
+                    <span class="title">Experience</span>
+                    <span class="short-info"><%= career.exprience %></span>
+                  </div>
+               
+        
+                </div>
+
+                <a class='quanto-link-btn btn-pill w-lg-100 justify-content-lg-center' onclick="openModal()">Apply for
+                  this position
+                  <span>
+                    <i class="fa-solid fa-arrow-right arry1"></i>
+                    <i class="fa-solid fa-arrow-right arry2"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Career section Start -->
+
+      <!-- Footer section Start -->
+ <%- include('include/footer') %>
+      <!-- Footer section End -->
+    </div>
+  </div>
+
+
+
+<!-- Modal -->
+<div id="formModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2>Application Form</h2>
+
+    <!-- Form -->
+    <form id="jobForm" action="/api/createjob" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="c_id" value="<%= career.c_id %>">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required placeholder="Your full name" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required placeholder="you@example.com" />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" name="phone" id="phone" required placeholder="1234567890" pattern="[0-9]{10}" />
+      </div>
+
+      <div class="form-group">
+        <label for="experience">Work Experience (Years)</label>
+        <select name="experience" id="experience" required>
+          <option value="">Select</option>
+          <option value="0">0 Years</option>
+          <option value="1">1 Year</option>
+          <option value="2">2 Years</option>
+          <option value="3">3 Years</option>
+          <option value="4">4 Years</option>
+          <option value="5+">5+ Years</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="intro">Introduction</label>
+        <textarea name="introduction" id="intro" placeholder="Tell us about yourself..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="cv">Upload CV</label>
+        <input type="file" name="resume" id="cv" required accept=".pdf,.doc,.docx" />
+      </div>
+
+      <input type="hidden" name="status" value="1">
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="formMessage"></div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+  const modal = document.getElementById("formModal");
+
+  function openModal() {
+    modal.style.display = "block";
+  }
+
+  function closeModal() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+
+  document.getElementById("jobForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const messageBox = document.getElementById("formMessage");
+    const submitButton = this.querySelector('button[type="submit"]');
+
+    messageBox.textContent = "Please wait...";
+    messageBox.style.color = "#36644D";
+    submitButton.disabled = true;
+    submitButton.style.opacity = "0.6";
+    submitButton.style.cursor = "not-allowed";
+
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    try {
+      const res = await fetch("/api/createjob", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await res.json();
+      if (result.status) {
+        messageBox.textContent = "Your application has been submitted successfully!";
+        messageBox.style.color = "green";
+        this.reset();
+
+        setTimeout(() => {
+          closeModal();
+          messageBox.textContent = "";
+        }, 3000);
+      } else {
+        messageBox.textContent = "Failed to submit application: " + (result.error || "Unknown error");
+        messageBox.style.color = "red";
+      }
+    } catch (err) {
+      messageBox.textContent = "Error: " + err.message;
+      messageBox.style.color = "red";
+    } finally {
+      submitButton.disabled = false;
+      submitButton.style.opacity = "1";
+      submitButton.style.cursor = "pointer";
+    }
+  });
+</script>
+
+
+<!-- Optional CSS for modal -->
+
+
+  <!-- Jquery JS -->
+  <script src="/js/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <!-- MixItUp JS -->
+  <script src="/js/jquery.mixitup.min.js"></script>
+  <!-- Swiper Carousel JS -->
+  <script src="/js/swiper-bundle.min.js"></script>
+  <!-- Magnific Popup JS -->
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <!-- Odometer JS -->
+  <script src="/js/odometer.min.js"></script>
+  <script src="/js/viewport.jquery.js"></script>
+
+  <!-- gsap JS -->
+  <script src="/js/gsap.js"></script>
+  <script src="/js/gsap-scroll-smoother.js"></script>
+  <script src="/js/gsap-scroll-to-plugin.js"></script>
+  <script src="/js/gsap-scroll-trigger.js"></script>
+  <script src="/js/gsap-split-text.js"></script>
+
+  <!-- Menu JS -->
+  <script src="/js/menu.js"></script>
+
+  <!-- Main JS -->
+  <script src="/js/main.js"></script>
+</body>
+
+</html>
